@@ -1,0 +1,113 @@
+/**
+ * Used to apply custom focus styles to an element.
+ *
+ * When a key is provided, this uses the key-focus.js directive
+ * to manage state. You can apply these styles based on multiple
+ * key input types — supported types include tab, arrow, enter,
+ * and space.
+ *
+ * @param {string|null} key - key to focus by
+ * @example
+ *     @include focus-styles();
+ * @example
+ *     @include focus-styles('tab');
+ */
+@mixin focus-styles($key: null) {
+    @if ($key) {
+        .js-#{$key}key-outline & {
+            outline: rem(theme('focusOutlineWidth')) solid;
+            outline-offset: rem(theme('focusOutlineWidth'));
+            outline-color: theme('color.black');
+            box-shadow: 0 0 0 0.4rem theme('color.white');
+        }
+    } @else {
+        outline: rem(theme('focusOutlineWidth')) solid;
+        outline-offset: rem(theme('focusOutlineWidth'));
+        outline-color: theme('color.black');
+        box-shadow: 0 0 0 0.4rem theme('color.white');
+    }
+}
+
+/**
+ * Resets any focus styles applied to the element
+ *
+ * @param {string|null} key - key to reset focus on
+ */
+@mixin reset-focus-styles($key: null) {
+    @if ($key) {
+        .js-#{$key}key-outline & {
+            outline: none;
+            box-shadow: none;
+        }
+    } @else {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+/**
+ * Display focus styles using the focus-visible approach.
+ * This should be used as the default, for anything that's not a text input.
+ * Ensure this is set at the base level of a selector (not on focus).
+ *
+ * If you need to apply this on a child element of a link element (e.g. pseudo
+ * element to increase the clickable area), you can provide the selector to
+ * apply focus styles to.
+ *
+ * @example
+ *     @include focus-visible-styles();
+ * @example
+ *     @include focus-visible-styles('&::after');
+ */
+@mixin focus-visible-styles($selector: null) {
+    /*
+     * Provide a focus style for browsers that don't
+     * support :focus-visible. Breaks focus behaviour in browsers
+     * support :focus-visible, so we need to override this below.
+     */
+    @if ($selector) {
+        &:focus {
+            @include reset-focus-styles();
+
+            #{$selector} {
+                @include focus-styles();
+            }
+        }
+    } @else {
+        &:focus {
+            @include focus-styles();
+        }
+    }
+
+    /*
+     * Remove the focus styles for mouse users ONLY if
+     * :focus-visible is supported in this browser.
+     */
+    @if ($selector) {
+        &:focus:not(:focus-visible) {
+            #{$selector} {
+                @include reset-focus-styles();
+            }
+        }
+    } @else {
+        &:focus:not(:focus-visible) {
+            @include reset-focus-styles();
+        }
+    }
+
+    /*
+     * If :focus-visible is supported in this browser,
+     * provide focus styles for keyboard focus.
+     */
+    @if ($selector) {
+        &:focus-visible {
+            #{$selector} {
+                @include focus-styles();
+            }
+        }
+    } @else {
+        &:focus-visible {
+            @include focus-styles();
+        }
+    }
+}

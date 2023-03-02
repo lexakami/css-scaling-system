@@ -1,0 +1,67 @@
+@function isReverseScaling($min, $max) {
+    @if (calc($min > $max)) {
+        @return true;
+    } @else {
+        @return false;
+    }
+}
+
+/* stylelint-disable scss/no-duplicate-dollar-variables, order/order */
+
+/**
+ * Scaling typography mixin
+ * Creates a property that scales between the provided minimum and maximum values
+ * within the defined minimum and maximum viewport sizes. The values passed in
+ * should use the scaling typography SASS variables as they need to be passed in
+ * as unitless values.
+ *
+ * @param {String} $prop - The property to scale
+ * @param {Number} $min - The minimum value to scale to
+ * @param {Number} $max - The maximum value to scale to
+ * @param {Number} $vmin - The minimum viewport width to scale from
+ * @param {Number} $vmax - The maximum viewport width to scale from
+ * @param {Boolean} $isReverse - Whether to reverse the scaling
+ * @param {Boolean} $important - Whether to add !important to the property
+ *
+ * @example Font size scaling
+ *          @include scale-rem('font-size', $scaling-font-0, $scaling-font-2);
+ * @example Spacing scaling
+ *          @include scale-rem('--space', $scaling-spacing-0, $scaling-spacing-2);
+ * @example With custom max breakpoint
+ *          @include scale-rem('--space', $scaling-spacing-0, $scaling-spacing-2, $vmax: 1400);
+ */
+@mixin scale-rem(
+    $prop,
+    $min,
+    $max,
+    $vmin: theme('containerWidth.mobile'),
+    $vmax: theme('containerWidth.wide'),
+    $isReverse: false,
+    $important: false
+) {
+    $width-min: #{$vmin / 10}; // rem
+    $width-max: #{$vmax / 10}; // rem
+    $scale-diff: #{$max} - #{$min};
+    $width-diff: #{$width-max} - #{$width-min};
+    $important: #{if($important, '!important', '')};
+
+    // Reverse operations if min is greater than max value
+    @if ($isReverse) {
+        $scale-diff: #{$min} - #{$max};
+        $width-diff: #{$width-min} - #{$width-max};
+    }
+
+    $min-value: calc(#{$min} * 1rem);
+    $scaled-value: calc(
+        (#{$min} * 1rem) + (#{$scale-diff}) * (100vw - #{$width-min}rem) / (#{$width-diff})
+    );
+    $max-value: calc(#{$max} * 1rem);
+
+    @if ($isReverse) {
+        #{$prop}: clamp(#{$max-value}, #{$scaled-value}, #{$min-value}) $important;
+    } @else {
+        #{$prop}: clamp(#{$min-value}, #{$scaled-value}, #{$max-value}) $important;
+    }
+}
+
+/* stylelint-enable scss/no-duplicate-dollar-variables, order/order */

@@ -1,0 +1,32 @@
+/**
+ * Converts px values to em units.
+ * Used for media queries to allow these to scale when the browser base font size is changed.
+ */
+@function em($pxValue) {
+    @return $pxValue / 16 + em;
+}
+
+/**
+ * Converts px values to rem units.
+ * Used for px values in the theme config that need to be converted.
+ */
+@function rem($pxValue, $hasUnit: true) {
+    @if ($hasUnit) {
+        @return $pxValue / 10 + rem;
+    } @else {
+        @return $pxValue / 10;
+    }
+}
+
+@function pow($number, $exponent) {
+    $value: 1;
+
+    @if $exponent > 0 {
+        @for $i from 1 through $exponent {
+            /* stylelint-disable-next-line scss/no-duplicate-dollar-variables */
+            $value: $value * $number;
+        }
+    }
+
+    @return $value;
+}

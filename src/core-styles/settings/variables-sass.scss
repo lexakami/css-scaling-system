@@ -1,0 +1,57 @@
+$image-path: '../../../src/images';
+
+/*
+ * Scaling typography variables
+ * These variables should only be used for scaling typography and spacing as
+ * their values must be unitless to be used within the scale-rem() mixin.
+ * The steps on the scale should also align with the CSS custom properties in variable-css.scss file.
+ */
+
+// Spacing
+$scaling-spacing-ratio: #{theme('spacingRatio')};
+$scaling-spacing-0: #{rem(theme('baseSize'), false)};
+$scaling-spacing-neg1: $scaling-spacing-0 / $scaling-spacing-ratio;
+$scaling-spacing-neg2: $scaling-spacing-neg1 / $scaling-spacing-ratio;
+$scaling-spacing-neg3: $scaling-spacing-neg2 / $scaling-spacing-ratio;
+$scaling-spacing-neg4: $scaling-spacing-neg3 / $scaling-spacing-ratio;
+$scaling-spacing-neg5: $scaling-spacing-neg4 / $scaling-spacing-ratio;
+$scaling-spacing-neg6: $scaling-spacing-neg5 / $scaling-spacing-ratio;
+$scaling-spacing-1: #{$scaling-spacing-0} * $scaling-spacing-ratio;
+$scaling-spacing-2: #{$scaling-spacing-1} * $scaling-spacing-ratio;
+$scaling-spacing-3: #{$scaling-spacing-2} * $scaling-spacing-ratio;
+$scaling-spacing-4: #{$scaling-spacing-3} * $scaling-spacing-ratio;
+$scaling-spacing-5: #{$scaling-spacing-4} * $scaling-spacing-ratio;
+$scaling-spacing-6: #{$scaling-spacing-5} * $scaling-spacing-ratio;
+$scaling-spacing-7: #{$scaling-spacing-6} * $scaling-spacing-ratio;
+$scaling-spacing-8: #{$scaling-spacing-7} * $scaling-spacing-ratio;
+$scaling-spacing-9: #{$scaling-spacing-8} * $scaling-spacing-ratio;
+$scaling-spacing-10: #{$scaling-spacing-9} * $scaling-spacing-ratio;
+$scaling-spacing-11: #{$scaling-spacing-10} * $scaling-spacing-ratio;
+$scaling-spacing-12: #{$scaling-spacing-11} * $scaling-spacing-ratio;
+$scaling-spacing-13: #{$scaling-spacing-12} * $scaling-spacing-ratio;
+$scaling-spacing-14: #{$scaling-spacing-13} * $scaling-spacing-ratio;
+$scaling-spacing-15: #{$scaling-spacing-14} * $scaling-spacing-ratio;
+
+// Font sizing
+$scaling-font-ratio: #{theme('fontRatio')};
+$scaling-font-0: #{rem(theme('baseSize'), false)};
+$scaling-font-neg1: $scaling-font-0 / $scaling-font-ratio;
+$scaling-font-neg2: $scaling-font-neg1 / $scaling-font-ratio;
+$scaling-font-neg3: $scaling-font-neg2 / $scaling-font-ratio;
+$scaling-font-1: #{$scaling-font-0} * $scaling-font-ratio;
+$scaling-font-2: #{$scaling-font-1} * $scaling-font-ratio;
+$scaling-font-3: #{$scaling-font-2} * $scaling-font-ratio;
+$scaling-font-4: #{$scaling-font-3} * $scaling-font-ratio;
+$scaling-font-5: #{$scaling-font-4} * $scaling-font-ratio;
+$scaling-font-6: #{$scaling-font-5} * $scaling-font-ratio;
+$scaling-font-7: #{$scaling-font-6} * $scaling-font-ratio;
+$scaling-font-8: #{$scaling-font-7} * $scaling-font-ratio;
+$scaling-font-9: #{$scaling-font-8} * $scaling-font-ratio;
+$scaling-font-10: #{$scaling-font-9} * $scaling-font-ratio;
+$scaling-font-11: #{$scaling-font-10} * $scaling-font-ratio;
+$scaling-font-12: #{$scaling-font-11} * $scaling-font-ratio;
+$scaling-font-13: #{$scaling-font-12} * $scaling-font-ratio;
+
+$width-container-fallback: 79.4rem;
+$container-padding-min: $scaling-spacing-6;
+$container-padding-max: $scaling-spacing-11;

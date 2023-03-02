@@ -1,0 +1,6 @@
+// Required for anchor links to offset after scrolling
+// Value matches the padding top applied to the bordered container inner inside the parent stack.
+// See Container.vue line 67.
+[tabindex] {
+    @include scale-rem('scroll-margin-top', $scaling-spacing-5, $scaling-spacing-11);
+}

@@ -1,0 +1,156 @@
+// Base Typographic Styles and utilities
+body {
+    @include scale-rem('font-size', $scaling-font-0, $scaling-font-2);
+    @include scale-rem('line-height', 2, 2.8);
+
+    font-family: theme('fontFamily.sans');
+    font-weight: theme('fontWeight.sans.light');
+    color: theme('color.black');
+}
+
+.h1,
+h1 {
+    --space: var(--spacing-8);
+
+    @include scale-rem('font-size', $scaling-font-8, 9);
+    @include scale-rem('line-height', 3.8, 8);
+    @include scale-rem('letter-spacing', -0.116, -0.254);
+
+    font-weight: theme('fontWeight.sans.thin');
+
+    + * {
+        @include scale-rem('--space', $scaling-spacing-4, $scaling-spacing-8);
+    }
+}
+
+.h2,
+h2 {
+    --space: var(--spacing-6);
+
+    @include scale-rem('font-size', $scaling-font-6, $scaling-font-11);
+    @include scale-rem('line-height', $scaling-font-6, 5.6);
+
+    font-weight: theme('fontWeight.sans.thin');
+    color: theme('color.green.600');
+    letter-spacing: -0.099rem;
+
+    + * {
+        @include scale-rem('--space', $scaling-spacing-3, $scaling-spacing-4);
+    }
+}
+
+.h3,
+h3 {
+    @include scale-rem('font-size', $scaling-font-3, $scaling-font-6);
+    @include scale-rem('line-height', 2.4, 3.4);
+    @include scale-rem('--space', $scaling-spacing-5, $scaling-spacing-6);
+
+    font-weight: theme('fontWeight.sans.semiBold');
+
+    + * {
+        @include scale-rem('--space', $scaling-spacing-2, $scaling-spacing-1);
+    }
+
+    // Style current element as a content h3, or if there is a parent element with a content class
+    &.content,
+    .content & {
+        @include scale-rem('padding-bottom', $scaling-spacing-0, $scaling-spacing-2);
+
+        border-bottom: 0.1rem solid theme('color.green.600');
+    }
+}
+
+.h4,
+h4 {
+    --space: var(--spacing-1);
+
+    @include scale-rem('font-size', $scaling-font-2, $scaling-font-4);
+    @include scale-rem('letter-spacing', -0.028, -0.04);
+
+    font-weight: theme('fontWeight.sans.semiBold');
+
+    + * {
+        @include scale-rem('--space', $scaling-spacing-neg5, $scaling-spacing-neg4);
+    }
+}
+
+.h5,
+h5 {
+    --space: var(--spacing-1);
+
+    @include scale-rem('font-size', $scaling-font-1, $scaling-font-3);
+    @include scale-rem('letter-spacing', 0, -0.038);
+
+    font-weight: theme('fontWeight.sans.semiBold');
+
+    + * {
+        --space: var(--spacing-neg6);
+    }
+}
+
+.h6,
+h6 {
+    @include scale-rem('font-size', $scaling-font-0, $scaling-font-2);
+
+    font-weight: theme('fontWeight.sans.semiBold');
+
+    + * {
+        --space: 0;
+    }
+}
+
+strong {
+    font-weight: theme('fontWeight.sans.semiBold');
+}
+
+abbr[title] {
+    text-decoration: underline dashed;
+    text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.15em;
+}
+
+a {
+    color: currentColor;
+    text-decoration-thickness: 0.1rem;
+    text-decoration-color: theme('color.green.600');
+    text-underline-offset: 0.22em;
+    transition: color theme('link.transitionDuration') theme('link.transitionTiming');
+
+    &:hover {
+        color: theme('color.green.600');
+    }
+
+    .content & {
+        &[data-external-link] {
+            // Ensure icon stays with link text
+            display: inline-block;
+
+            &::after {
+                position: relative;
+                top: -0.05em;
+                display: inline-block;
+                content: '';
+                width: 0.7em;
+                height: 0.7em;
+                margin-right: 0.1em;
+                margin-left: 0.2em;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23008763' d='M8.14879647,0.25 L8.14879647,2.05769231 L2.05634029,2.05744925 L2.05634029,21.9420646 L21.9409557,21.9420646 L21.9423077,15.5016941 L23.75,15.5016941 L23.75,23.75 L0.25,23.75 L0.25,0.25 L8.14879647,0.25 Z M23.75,0.25 L23.75,11.9139814 L21.9423077,11.9139814 L21.94,3.547 L7.57483713,17.9129824 L6.29660564,16.6347509 L20.873,2.057 L12,2.05769231 L12,0.25 L23.75,0.25 Z'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                transition: transform theme('link.transitionDuration')
+                    theme('link.transitionTiming');
+            }
+
+            @media (prefers-reduced-motion: no-preference) {
+                &:hover {
+                    /* stylelint-disable-next-line max-nesting-depth */
+                    &::after {
+                        transform: translateX(0.25rem) translateY(-0.25rem);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Other element selectors go here
+//

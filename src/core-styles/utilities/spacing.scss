@@ -1,0 +1,24 @@
+/**
+ * Spacing utilities - these must be on the spacing scale (either scaling or non scaling).
+ */
+
+// This should match the default stack space in stack.scss
+.space\:global-space {
+    @include scale-rem('--space', $scaling-spacing-neg2, $scaling-spacing-0, $important: true);
+}
+
+.space\:8-12 {
+    @include scale-rem('--space', $scaling-spacing-8, $scaling-spacing-12, $important: true);
+}
+
+.space\:6-9 {
+    @include scale-rem('--space', $scaling-spacing-6, $scaling-spacing-9, $important: true);
+}
+
+.space\:2-1 {
+    @include scale-rem('--space', $scaling-spacing-2, $scaling-spacing-1, $important: true);
+}
+
+.space\:0-4 {
+    @include scale-rem('--space', $scaling-spacing-0, $scaling-spacing-4, $important: true);
+}

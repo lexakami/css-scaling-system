@@ -1,0 +1,34 @@
+[href],
+input,
+select,
+textarea,
+button,
+summary,
+[tabindex],
+button[tabindex] {
+    &:focus {
+        outline: none;
+    }
+}
+
+// Text inputs always display focus with focus-visible,
+// so we can't rely on that approach
+input[type='text'],
+input[type='search'],
+input[type='number'],
+textarea {
+    &:focus {
+        @include focus-styles('tab');
+    }
+}
+
+[href],
+input[type='checkbox'],
+input[type='radio'],
+select,
+summary,
+button,
+button[tabindex]:not([tabindex='-1']),
+[tabindex]:not([tabindex='-1']) {
+    @include focus-visible-styles();
+}

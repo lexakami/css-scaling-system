@@ -1,0 +1,86 @@
+// Base Global Styles
+* {
+    // Measure axiom - The measure of any line of text should not exceed this amount
+    max-width: var(--measure);
+}
+
+// Exception based styling for the measure axiom
+// Any new custom elements should also be added here
+html,
+body,
+div,
+article,
+button,
+header,
+nav,
+main,
+fieldset,
+figure,
+footer,
+form,
+iframe,
+table,
+ul,
+ol,
+picture,
+box-l,
+cluster-l,
+cover-l,
+frame-l,
+grid-l,
+reel-l,
+sidebar-l,
+stack-l,
+switcher-l {
+    max-width: none;
+}
+
+html {
+    font-size: 62.5%;
+
+    @media (prefers-reduced-motion: no-preference) {
+        // smooth scroll always on causes scroll to top when loading url with hash
+        &:focus-within {
+            scroll-behavior: smooth;
+        }
+    }
+}
+
+main {
+    // For last updated date and pinned wrapper sticky positioning
+    position: relative;
+    margin-bottom: var(--spacing-8);
+}
+
+img,
+video,
+iframe {
+    display: block;
+}
+
+/**
+ * Images should have width and height attr on them so the browser
+ * is able to determine how much space it will take up, and reduces
+ * content reflow on page load.
+ */
+img {
+    width: auto;
+}
+
+fieldset {
+    border: 0;
+}
+
+button {
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    transition-duration: 0.2s;
+    transition-property: color, border-color, background-color;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+}

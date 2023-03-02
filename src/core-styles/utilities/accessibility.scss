@@ -1,0 +1,4 @@
+// Visually hide an element
+.visually-hidden {
+    @include visually-hidden();
+}

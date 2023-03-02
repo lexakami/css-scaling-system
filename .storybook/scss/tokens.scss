@@ -1,0 +1,53 @@
+.sb_table {
+    th {
+        padding: var(--spacing-0);
+    }
+
+    td {
+        padding: var(--spacing-neg1);
+    }
+
+    th,
+    td {
+        border-bottom: 0.1rem solid lightgray;
+
+        &:first-of-type {
+            padding-left: 0;
+        }
+    }
+
+    code {
+        padding: var(--spacing-neg3) var(--spacing-neg2);
+        border-radius: var(--spacing-neg3);
+        background-color: #f5f8fa;
+        font-family: monospace;
+        font-size: var(--font-neg1);
+        color: #00294d;
+    }
+}
+
+.sb_spacing-example {
+    margin-bottom: var(--spacing-neg1);
+    background-color: gray;
+}
+
+.sb_font-example {
+    margin-bottom: var(--spacing-neg1);
+    line-height: 1;
+}
+
+.sb_content {
+    @include scale-rem('--space', $scaling-spacing-neg2, $scaling-spacing-0);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    &:only-child {
+        height: 100%;
+    }
+
+    > * + * {
+        margin-top: var(--space);
+    }
+}

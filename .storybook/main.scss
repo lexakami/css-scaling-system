@@ -1,0 +1,23 @@
+@import 'scss/tokens';
+
+.sb-show-main {
+    padding: 0 !important;
+}
+
+.sbdocs-preview {
+    // Prevent negative z-index hiding elements in storybook
+    z-index: 1;
+}
+
+// Reset global table borders in docs props table
+.docblock-argstable {
+    // hide args table for demo purposes
+    display: none;
+
+    th,
+    td {
+        &::after {
+            display: none;
+        }
+    }
+}

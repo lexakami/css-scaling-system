@@ -1,0 +1,84 @@
+/**
+ * Global variables to use in universal styles, with layout primitives and
+ * within components.
+ */
+:root {
+    /**
+     * Axioms - https://every-layout.dev/rudiments/axioms/
+     */
+
+    /**
+     * Measure - The measure of any line of text should not exceed this amount
+     * @see universal/global.scss for global element exceptions to this
+     */
+    --measure: var(--line-length-long);
+
+    // Allows postcss-custom-properties to create default spacing fallback for IE11
+    --space: var(--spacing-4);
+
+    /**
+     * Spacing CSS custom properties
+     * These are used within the Every Layout layouts, and for spacing that doesn't
+     * need to scale alongside scaling typography. These need to be rem values as
+     * they need to be able to be passed inline to layout templates.
+     */
+    --spacing-ratio: #{theme('spacingRatio')};
+    --spacing-neg6: calc(var(--spacing-neg5) / var(--spacing-ratio));
+    --spacing-neg5: calc(var(--spacing-neg4) / var(--spacing-ratio));
+    --spacing-neg4: calc(var(--spacing-neg3) / var(--spacing-ratio));
+    --spacing-neg3: calc(var(--spacing-neg2) / var(--spacing-ratio));
+    --spacing-neg2: calc(var(--spacing-neg1) / var(--spacing-ratio));
+    --spacing-neg1: calc(var(--spacing-0) / var(--spacing-ratio));
+    --spacing-0: #{rem(theme('baseSize'))};
+    --spacing-1: calc(var(--spacing-0) * var(--spacing-ratio));
+    --spacing-2: calc(var(--spacing-1) * var(--spacing-ratio));
+    --spacing-3: calc(var(--spacing-2) * var(--spacing-ratio));
+    --spacing-4: calc(var(--spacing-3) * var(--spacing-ratio));
+    --spacing-5: calc(var(--spacing-4) * var(--spacing-ratio));
+    --spacing-6: calc(var(--spacing-5) * var(--spacing-ratio));
+    --spacing-7: calc(var(--spacing-6) * var(--spacing-ratio));
+    --spacing-8: calc(var(--spacing-7) * var(--spacing-ratio));
+    --spacing-9: calc(var(--spacing-8) * var(--spacing-ratio));
+    --spacing-10: calc(var(--spacing-9) * var(--spacing-ratio));
+    --spacing-11: calc(var(--spacing-10) * var(--spacing-ratio));
+    --spacing-12: calc(var(--spacing-11) * var(--spacing-ratio));
+    --spacing-13: calc(var(--spacing-12) * var(--spacing-ratio));
+    --spacing-14: calc(var(--spacing-13) * var(--spacing-ratio));
+    --spacing-15: calc(var(--spacing-14) * var(--spacing-ratio));
+
+    /**
+     * Font size CSS custom properties
+     * These are used for elements that don't need to have scaling typography -
+     * they stay static, or are managed as exceptions with media queries.
+     */
+    --font-ratio: #{theme('fontRatio')};
+    --font-neg3: calc(var(--font-neg2) / var(--font-ratio));
+    --font-neg2: calc(var(--font-neg1) / var(--font-ratio));
+    --font-neg1: calc(var(--font-0) / var(--font-ratio));
+    --font-0: #{rem(theme('baseSize'))};
+    --font-1: calc(var(--font-0) * var(--font-ratio));
+    --font-2: calc(var(--font-1) * var(--font-ratio));
+    --font-3: calc(var(--font-2) * var(--font-ratio));
+    --font-4: calc(var(--font-3) * var(--font-ratio));
+    --font-5: calc(var(--font-4) * var(--font-ratio));
+    --font-6: calc(var(--font-5) * var(--font-ratio));
+    --font-7: calc(var(--font-6) * var(--font-ratio));
+    --font-8: calc(var(--font-7) * var(--font-ratio));
+    --font-9: calc(var(--font-8) * var(--font-ratio));
+    --font-10: calc(var(--font-9) * var(--font-ratio));
+    --font-11: calc(var(--font-10) * var(--font-ratio));
+    --font-12: calc(var(--font-11) * var(--font-ratio));
+    --font-13: calc(var(--font-12) * var(--font-ratio));
+
+    // Container widths
+    --container-width-wide: #{rem(theme('containerWidth.wide'))};
+    --container-width-extra-wide: #{rem(theme('containerWidth.extraWide'))};
+
+    // Line length
+    --line-length-long: #{theme('maxLineLength.long') + ch};
+
+    // Hero + nav internals column gap
+    --hero-nav-column-gap: var(--spacing-8);
+
+    @include scale-rem('--header-spacing-bottom', $scaling-spacing-2, 5.3);
+}
